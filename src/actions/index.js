@@ -1,12 +1,32 @@
 import axios from 'axios';
 
-export function fetchProducts() {
+export const SET_PRODUCTS = 'SET_PRODUCTS';
+
+export function setProducts(products){
+  return {
+    type: "SET_PRODUCTS",
+    products
+  }
+}
+
+export function fetchPosts() {
   return (dispatch) => {
-    axios.get('/products')
+    return axios.get('/posts')
     .then((result) => {
-      console.log(result.data);
+      dispatch(setProducts(result.data))
     }).catch((error) => {
       console.log(error);
     });
   }
 }
+
+// export function fetchProducts() {
+//  return (dispatch) => {
+//    axios.get('/products')
+//    .then((result) => {
+//     console.log(result.data);
+//    }).catch((error) => {
+//      console.log(error);
+//    });
+//  }
+// }
