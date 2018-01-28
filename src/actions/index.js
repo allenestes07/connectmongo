@@ -11,7 +11,7 @@ export function setProducts(products){
 
 export function fetchPosts() {
   return (dispatch) => {
-    return axios.get('/posts')
+    return axios.get('/products')
     .then((result) => {
       dispatch(setProducts(result.data))
     }).catch((error) => {
