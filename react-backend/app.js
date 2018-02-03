@@ -44,6 +44,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/* SET Product FROM FORM */
+app.post('/setproduct', function(req, res, next) {
+  // console.log(req.body);
+  Product.create(req.body, function (err, products) {
+    if (err) return next(err);
+    res.json(req.body);
+  });
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
