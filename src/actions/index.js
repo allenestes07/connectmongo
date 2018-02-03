@@ -2,13 +2,13 @@ import axios from 'axios';
 
 export const SET_PRODUCTS = 'SET_PRODUCTS';
 
-
-export function fetchPosts() {
+// Axios Get call to the Express Api
+export function fetchProducts() {
   return (dispatch) => {
-    axios.get('/posts')
+    axios.get('/products')
     .then((result) => {
       dispatch({
-          type: "SET_POSTS",
+          type: "SET_PRODUCTS",
           posts: result.data
         })
     }).catch((error) => {
@@ -17,6 +17,13 @@ export function fetchPosts() {
   }
 }
 
+// Axios Post call to Express Api
+export function setProduct(product) {
+  axios.post('/setproduct', product)
+  .then(function(response){
+    console.log('success',response.data);
+  });
+}
 
 // export function setProducts(products){
 //  return {
