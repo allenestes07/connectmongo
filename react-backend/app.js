@@ -25,8 +25,24 @@ db.on('error', function(err) {
 var Product = require('./models/Product.js');
 
 /* GET ALL PRODUCTS */
-app.get('/products', function(req, res, next) {
-  Product.find(function (err, products) {
+// app.get('/products', function(req, res, next) {
+//   Product.find(function (err, products) {
+//     if (err) return next(err);
+//     res.json(products);
+//   });
+// });
+
+/* GET ALL Products Sorted Newest First */
+app.get('/products', (req, res, next) => {
+  Products.find({}).sort({date_posted: -1}).exec((err, products) => {
+    if (err) return next(err);
+    res.json(products);
+  });
+});
+
+/* GET PRODUCTS BY ID */
+app.get('/activeproducts', (req, res, next) => {
+  Products.findOne({_id: "5a715109131c1c8187ee4807"}, (err, products) => {
     if (err) return next(err);
     res.json(products);
   });
